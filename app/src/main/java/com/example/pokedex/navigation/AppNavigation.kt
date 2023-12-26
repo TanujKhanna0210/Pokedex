@@ -6,15 +6,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.pokedex.screens.PokemonListScreen
 
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Routes.POKEMON_LIST_SCREEN) {
         composable(Routes.POKEMON_LIST_SCREEN) {
-            // Pokemon list screen composable here
+            PokemonListScreen(navController = navController)
         }
         composable("${Routes.POKEMON_DETAIL_SCREEN}/{dominantColor}/{pokemonName}",
             arguments = listOf(
