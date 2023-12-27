@@ -56,6 +56,8 @@ import com.example.pokedex.data.models.PokedexListEntry
 import com.example.pokedex.navigation.Routes
 import com.example.pokedex.ui.theme.RobotoCondensed
 import com.example.pokedex.viewmodel.PokemonListViewModel
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun PokemonListScreen(
@@ -161,8 +163,9 @@ fun PokedexEntry(
                 )
             )
             .clickable {
+                val encodedUrl = URLEncoder.encode(entry.imageUrl, StandardCharsets.UTF_8.toString())
                 navController.navigate(
-                    "${Routes.POKEMON_DETAIL_SCREEN}/${dominantColor.toArgb()}/${entry.pokemonName}"
+                    "${Routes.POKEMON_DETAIL_SCREEN}/${dominantColor.toArgb()}/${entry.pokemonName}/${encodedUrl}"
                 )
             }
     ) {
