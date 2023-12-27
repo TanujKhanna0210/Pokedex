@@ -9,13 +9,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -56,8 +62,31 @@ fun PokemonDetailScreen(
                 .fillMaxHeight(.2f)
                 .align(Alignment.TopStart)
         )
-
-
+        PokemonDetailStateWrapper(
+            pokemonInfo = pokemonInfo,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(
+                    top = topPadding + pokemonImageSize / 2f,
+                    start = 16.dp,
+                    end = 16.dp,
+                    bottom = 16.dp
+                )
+                .shadow(10.dp, RoundedCornerShape(10.dp))
+                .clip(RoundedCornerShape(10.dp))
+                .background(MaterialTheme.colorScheme.surface)
+                .padding(16.dp)
+                .align(Alignment.BottomCenter),
+            loadingModifier = Modifier
+                .size(80.dp)
+                .align(Alignment.Center)
+                .padding(
+                    top = 16.dp,
+                    start = 16.dp,
+                    end = 16.dp,
+                    bottom = 16.dp
+                )
+        )
         Box(
             contentAlignment = Alignment.TopCenter,
             modifier = Modifier.fillMaxSize()
@@ -106,5 +135,33 @@ fun PokemonDetailTopSection(
                     navController.popBackStack()
                 }
         )
+    }
+}
+
+@Composable
+fun PokemonDetailStateWrapper(
+    pokemonInfo: Resource<Pokemon>,
+    modifier: Modifier = Modifier,
+    loadingModifier: Modifier = Modifier
+) {
+    when (pokemonInfo) {
+        is Resource.Success -> {
+
+        }
+
+        is Resource.Error -> {
+            Text(
+                text = pokemonInfo.message!!,
+                color = Color.Red,
+                modifier = modifier
+            )
+        }
+
+        is Resource.Loading -> {
+            CircularProgressIndicator(
+                color = MaterialTheme.colorScheme.inverseSurface,
+                modifier = loadingModifier
+            )
+        }
     }
 }
