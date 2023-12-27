@@ -71,9 +71,9 @@ dependencies {
 
     implementation ("androidx.compose.material:material-icons-core")
     implementation ("androidx.compose.material:material-icons-extended")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha04")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     implementation ("androidx.navigation:navigation-compose:2.7.6")
-    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.0-alpha05")
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
 
     // Retrofit
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
@@ -93,15 +93,16 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
 
     // Coil
-    implementation ("io.coil-kt:coil:1.1.1")
-    implementation ("com.google.accompanist:accompanist-coil:0.7.0")
+    implementation ("io.coil-kt:coil-compose:2.5.0")
+    implementation ("com.google.accompanist:accompanist-coil:0.10.0")
+    implementation ("io.coil-kt:coil-svg:2.5.0")
 
     //Dagger - Hilt
     implementation ("com.google.dagger:hilt-android:2.44")
     kapt ("com.google.dagger:hilt-android-compiler:2.44")
 //    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
     kapt ("androidx.hilt:hilt-compiler:1.0.0-alpha01")
-    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0-alpha01")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.2.0-alpha01")
 
     implementation ("androidx.palette:palette-ktx:1.0.0")
 

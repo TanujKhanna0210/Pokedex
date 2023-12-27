@@ -29,6 +29,10 @@ class PokemonListViewModel @Inject constructor(
     var isLoading = mutableStateOf(false)
     var endReached = mutableStateOf(false)
 
+    init {
+        loadPokemonPaginated()
+    }
+
     fun loadPokemonPaginated() {
         viewModelScope.launch {
             isLoading.value = true
@@ -43,7 +47,7 @@ class PokemonListViewModel @Inject constructor(
                             entry.url.takeLastWhile { it.isDigit() }
                         }
                         val url =
-                            "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png"
+                            "https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${number}.svg"
                         PokedexListEntry(
                             entry.name.replaceFirstChar {
                                 if (it.isLowerCase()) it.titlecase(
@@ -53,7 +57,7 @@ class PokemonListViewModel @Inject constructor(
                             number.toInt()
                         )
                     }
-                    curPage ++
+                    curPage++
 
                     loadError.value = ""
                     isLoading.value = false
@@ -80,3 +84,9 @@ class PokemonListViewModel @Inject constructor(
     }
 
 }
+
+// "https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${number}.svg"
+
+// https://pokeres.bastionbot.org/images/pokemon/${number}.png (not working)
+
+// https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png  (not working)
